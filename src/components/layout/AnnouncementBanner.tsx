@@ -1,49 +1,54 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Gift, GraduationCap, Sparkles, Ship, X } from "lucide-react";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
+
+import bannerGroupage from "@/assets/banner-groupage.jpg";
+import bannerFormation from "@/assets/banner-formation.jpg";
+import bannerPromo from "@/assets/banner-promo.jpg";
+import bannerNouveauClient from "@/assets/banner-nouveau-client.jpg";
 
 interface Announcement {
   id: number;
-  icon: React.ElementType;
-  text: string;
+  title: string;
+  subtitle: string;
   link: string;
   linkText: string;
-  bgColor: string;
+  image: string;
 }
 
 const announcements: Announcement[] = [
   {
     id: 1,
-    icon: Gift,
-    text: "🎁 Offre spéciale : -15% sur le groupage maritime jusqu'au 31 janvier !",
+    title: "-15% sur le groupage maritime",
+    subtitle: "Offre valable jusqu'au 31 janvier 2025",
     link: "/promotions",
-    linkText: "Profiter de l'offre →",
-    bgColor: "bg-gold",
+    linkText: "Profiter de l'offre",
+    image: bannerPromo,
   },
   {
     id: 2,
-    icon: GraduationCap,
-    text: "📚 Formation Import-Export : Session du 25 janvier — Inscriptions ouvertes, places limitées !",
+    title: "Formation Import-Export — 25 janvier",
+    subtitle: "Inscriptions ouvertes • Places limitées",
     link: "/formations",
-    linkText: "Réserver ma place →",
-    bgColor: "bg-navy",
+    linkText: "Réserver ma place",
+    image: bannerFormation,
   },
   {
     id: 3,
-    icon: Ship,
-    text: "🚢 Prochain départ groupage maritime : 20 janvier — Réservez votre espace maintenant",
+    title: "Prochain départ groupage : 20 janvier",
+    subtitle: "Réservez votre espace dès maintenant",
     link: "/groupages",
-    linkText: "Réserver →",
-    bgColor: "bg-emerald-600",
+    linkText: "Réserver",
+    image: bannerGroupage,
   },
   {
     id: 4,
-    icon: Sparkles,
-    text: "✨ Nouveau client ? Bénéficiez d'un accompagnement personnalisé gratuit pour votre 1ère importation",
+    title: "Nouveau client ? Accompagnement gratuit",
+    subtitle: "Bénéficiez d'un suivi personnalisé pour votre 1ère importation",
     link: "/services",
-    linkText: "En savoir plus →",
-    bgColor: "bg-navy",
+    linkText: "En savoir plus",
+    image: bannerNouveauClient,
   },
 ];
 
@@ -58,6 +63,10 @@ const AnnouncementBanner = () => {
     setCurrentIndex((prev) => (prev + 1) % announcements.length);
   }, []);
 
+  const goToPrev = useCallback(() => {
+    setCurrentIndex((prev) => (prev - 1 + announcements.length) % announcements.length);
+  }, []);
+
   useEffect(() => {
     if (isPaused) return;
 
@@ -69,87 +78,130 @@ const AnnouncementBanner = () => {
   const handleMouseLeave = () => setIsPaused(false);
   const handleTouchStart = () => setIsPaused(true);
   const handleTouchEnd = () => {
-    // Small delay before resuming to allow reading
-    setTimeout(() => setIsPaused(false), 1000);
+    setTimeout(() => setIsPaused(false), 2000);
   };
 
   if (!isVisible) return null;
 
   const current = announcements[currentIndex];
-  const Icon = current.icon;
 
   return (
-    <motion.div
-      initial={{ height: 0, opacity: 0 }}
-      animate={{ height: "auto", opacity: 1 }}
-      exit={{ height: 0, opacity: 0 }}
-      className={`${current.bgColor} text-cream relative overflow-hidden transition-colors duration-500`}
+    <div
+      className="relative w-full h-[120px] md:h-[140px] overflow-hidden"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
-      <div className="container-custom py-2.5">
-        <div className="flex items-center justify-center gap-3 text-sm md:text-base pr-8">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={current.id}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.4 }}
-              className="flex items-center gap-3 flex-wrap justify-center"
-            >
-              <Icon className="w-5 h-5 shrink-0" />
-              <span className="font-medium text-center leading-relaxed">{current.text}</span>
-              <Link 
-                to={current.link}
-                className="underline font-semibold hover:no-underline whitespace-nowrap bg-white/10 px-3 py-1 rounded-full transition-all hover:bg-white/20"
-              >
-                {current.linkText}
-              </Link>
-            </motion.div>
-          </AnimatePresence>
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={current.id}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
+          className="absolute inset-0"
+        >
+          {/* Background Image */}
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: `url(${current.image})` }}
+          />
           
-          <button 
-            onClick={() => setIsVisible(false)}
-            className="absolute right-4 p-1.5 hover:bg-white/20 rounded-full transition-colors"
-            aria-label="Fermer"
-          >
-            <X className="w-4 h-4" />
-          </button>
-        </div>
-      </div>
-      
-      {/* Progress bar - pauses when hovered */}
-      <div className="absolute bottom-0 left-0 h-0.5 bg-white/30 w-full">
+          {/* Dark Overlay */}
+          <div className="absolute inset-0 bg-navy/70" />
+          
+          {/* Content */}
+          <div className="relative h-full container-custom flex items-center justify-center">
+            <div className="text-center text-cream max-w-3xl px-12 md:px-16">
+              <motion.h3
+                initial={{ y: 10, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.2 }}
+                className="text-lg md:text-2xl font-bold mb-1 md:mb-2 drop-shadow-lg"
+              >
+                {current.title}
+              </motion.h3>
+              <motion.p
+                initial={{ y: 10, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.3 }}
+                className="text-sm md:text-base text-cream/90 mb-2 md:mb-3 drop-shadow"
+              >
+                {current.subtitle}
+              </motion.p>
+              <motion.div
+                initial={{ y: 10, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.4 }}
+              >
+                <Link
+                  to={current.link}
+                  className="inline-block bg-gold hover:bg-gold/90 text-navy font-semibold px-4 py-1.5 md:px-6 md:py-2 rounded-full text-sm md:text-base transition-all hover:scale-105 shadow-lg"
+                >
+                  {current.linkText}
+                </Link>
+              </motion.div>
+            </div>
+          </div>
+        </motion.div>
+      </AnimatePresence>
+
+      {/* Navigation Arrows */}
+      <button
+        onClick={goToPrev}
+        className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 p-1.5 md:p-2 bg-cream/20 hover:bg-cream/30 rounded-full transition-colors backdrop-blur-sm"
+        aria-label="Annonce précédente"
+      >
+        <ChevronLeft className="w-4 h-4 md:w-5 md:h-5 text-cream" />
+      </button>
+      <button
+        onClick={goToNext}
+        className="absolute right-10 md:right-12 top-1/2 -translate-y-1/2 p-1.5 md:p-2 bg-cream/20 hover:bg-cream/30 rounded-full transition-colors backdrop-blur-sm"
+        aria-label="Annonce suivante"
+      >
+        <ChevronRight className="w-4 h-4 md:w-5 md:h-5 text-cream" />
+      </button>
+
+      {/* Close Button */}
+      <button
+        onClick={() => setIsVisible(false)}
+        className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 p-1.5 md:p-2 bg-cream/20 hover:bg-cream/30 rounded-full transition-colors backdrop-blur-sm"
+        aria-label="Fermer"
+      >
+        <X className="w-4 h-4 md:w-5 md:h-5 text-cream" />
+      </button>
+
+      {/* Progress bar */}
+      <div className="absolute bottom-0 left-0 h-1 bg-cream/20 w-full">
         <motion.div
           key={`${currentIndex}-${isPaused}`}
-          className="h-full bg-white"
+          className="h-full bg-gold"
           initial={{ width: "0%" }}
           animate={{ width: isPaused ? undefined : "100%" }}
-          transition={{ 
-            duration: isPaused ? 0 : INTERVAL_DURATION / 1000, 
-            ease: "linear" 
+          transition={{
+            duration: isPaused ? 0 : INTERVAL_DURATION / 1000,
+            ease: "linear",
           }}
-          style={isPaused ? { width: "var(--paused-width)" } : undefined}
         />
       </div>
 
-      {/* Dots indicator */}
-      <div className="absolute bottom-1.5 left-1/2 -translate-x-1/2 flex gap-1.5">
+      {/* Dots Indicator */}
+      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
         {announcements.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrentIndex(index)}
-            className={`w-1.5 h-1.5 rounded-full transition-all ${
-              index === currentIndex ? "bg-white w-3" : "bg-white/40 hover:bg-white/60"
+            className={`w-2 h-2 rounded-full transition-all ${
+              index === currentIndex
+                ? "bg-gold w-6"
+                : "bg-cream/50 hover:bg-cream/70"
             }`}
             aria-label={`Aller à l'annonce ${index + 1}`}
           />
         ))}
       </div>
-    </motion.div>
+    </div>
   );
 };
 
