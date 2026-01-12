@@ -14,6 +14,7 @@ import Layout from "@/components/layout/Layout";
 import SectionHeading from "@/components/shared/SectionHeading";
 import WhatsAppCTA from "@/components/shared/WhatsAppCTA";
 import Countdown from "@/components/shared/Countdown";
+import TrainingGallery from "@/components/shared/TrainingGallery";
 import teamImage from "@/assets/team-meeting.jpg";
 
 const Formations = () => {
@@ -261,6 +262,9 @@ const Formations = () => {
           </div>
         </div>
       </section>
+
+      {/* Training Gallery - Social Proof */}
+      <TrainingGallery />
 
       {/* Testimonials */}
       <section className="section-padding bg-background">
