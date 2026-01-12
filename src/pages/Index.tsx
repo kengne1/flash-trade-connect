@@ -17,6 +17,8 @@ import {
 import Layout from "@/components/layout/Layout";
 import SectionHeading from "@/components/shared/SectionHeading";
 import WhatsAppCTA from "@/components/shared/WhatsAppCTA";
+import SearchBar from "@/components/shared/SearchBar";
+import OpportunitiesPreview from "@/components/shared/OpportunitiesPreview";
 import heroImage from "@/assets/hero-trade.jpg";
 import warehouseImage from "@/assets/warehouse.jpg";
 import teamImage from "@/assets/team-meeting.jpg";
@@ -116,6 +118,19 @@ const Index = () => {
             <div className="w-1.5 h-3 bg-cream/50 rounded-full" />
           </div>
         </motion.div>
+      </section>
+
+      {/* Search Section */}
+      <section className="py-8 bg-background -mt-8 relative z-20">
+        <div className="container-custom">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+          >
+            <SearchBar />
+          </motion.div>
+        </div>
       </section>
 
       {/* Trust Section */}
@@ -280,6 +295,9 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      {/* Opportunities Preview Section */}
+      <OpportunitiesPreview />
 
       {/* CTA Section */}
       <section className="section-padding bg-gradient-to-br from-gold/10 to-secondary/30">
