@@ -14,16 +14,343 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      announcements: {
+        Row: {
+          created_at: string
+          display_order: number
+          id: string
+          image_url: string | null
+          is_active: boolean
+          link: string
+          link_text: string
+          subtitle: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          display_order?: number
+          id?: string
+          image_url?: string | null
+          is_active?: boolean
+          link?: string
+          link_text?: string
+          subtitle?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          display_order?: number
+          id?: string
+          image_url?: string | null
+          is_active?: boolean
+          link?: string
+          link_text?: string
+          subtitle?: string | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      chatbot_settings: {
+        Row: {
+          entrepreneur_message: string | null
+          groupage_explanation: string | null
+          id: string
+          is_enabled: boolean
+          merchant_message: string | null
+          motivation_message: string | null
+          quote_template: string | null
+          student_message: string | null
+          updated_at: string
+          welcome_message: string
+        }
+        Insert: {
+          entrepreneur_message?: string | null
+          groupage_explanation?: string | null
+          id?: string
+          is_enabled?: boolean
+          merchant_message?: string | null
+          motivation_message?: string | null
+          quote_template?: string | null
+          student_message?: string | null
+          updated_at?: string
+          welcome_message?: string
+        }
+        Update: {
+          entrepreneur_message?: string | null
+          groupage_explanation?: string | null
+          id?: string
+          is_enabled?: boolean
+          merchant_message?: string | null
+          motivation_message?: string | null
+          quote_template?: string | null
+          student_message?: string | null
+          updated_at?: string
+          welcome_message?: string
+        }
+        Relationships: []
+      }
+      contact_info: {
+        Row: {
+          auto_messages: Json | null
+          email: string | null
+          id: string
+          location: string | null
+          phone_numbers: string[] | null
+          updated_at: string
+          whatsapp_numbers: string[] | null
+        }
+        Insert: {
+          auto_messages?: Json | null
+          email?: string | null
+          id?: string
+          location?: string | null
+          phone_numbers?: string[] | null
+          updated_at?: string
+          whatsapp_numbers?: string[] | null
+        }
+        Update: {
+          auto_messages?: Json | null
+          email?: string | null
+          id?: string
+          location?: string | null
+          phone_numbers?: string[] | null
+          updated_at?: string
+          whatsapp_numbers?: string[] | null
+        }
+        Relationships: []
+      }
+      formations: {
+        Row: {
+          certificate_images: string[] | null
+          created_at: string
+          description: string | null
+          end_date: string | null
+          id: string
+          image_url: string | null
+          is_active: boolean
+          location: string | null
+          price: string | null
+          program: string[] | null
+          start_date: string | null
+          status: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          certificate_images?: string[] | null
+          created_at?: string
+          description?: string | null
+          end_date?: string | null
+          id?: string
+          image_url?: string | null
+          is_active?: boolean
+          location?: string | null
+          price?: string | null
+          program?: string[] | null
+          start_date?: string | null
+          status?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          certificate_images?: string[] | null
+          created_at?: string
+          description?: string | null
+          end_date?: string | null
+          id?: string
+          image_url?: string | null
+          is_active?: boolean
+          location?: string | null
+          price?: string | null
+          program?: string[] | null
+          start_date?: string | null
+          status?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      opportunities: {
+        Row: {
+          category: string
+          created_at: string
+          description: string | null
+          groupage_estimate: string | null
+          id: string
+          image_url: string | null
+          is_active: boolean
+          moq: string
+          name: string
+          price_range: string
+          transport_mode: string
+          updated_at: string
+        }
+        Insert: {
+          category?: string
+          created_at?: string
+          description?: string | null
+          groupage_estimate?: string | null
+          id?: string
+          image_url?: string | null
+          is_active?: boolean
+          moq?: string
+          name: string
+          price_range: string
+          transport_mode?: string
+          updated_at?: string
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          description?: string | null
+          groupage_estimate?: string | null
+          id?: string
+          image_url?: string | null
+          is_active?: boolean
+          moq?: string
+          name?: string
+          price_range?: string
+          transport_mode?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      page_contents: {
+        Row: {
+          content: Json
+          id: string
+          page_slug: string
+          title: string | null
+          updated_at: string
+        }
+        Insert: {
+          content?: Json
+          id?: string
+          page_slug: string
+          title?: string | null
+          updated_at?: string
+        }
+        Update: {
+          content?: Json
+          id?: string
+          page_slug?: string
+          title?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      promotions: {
+        Row: {
+          created_at: string
+          description: string | null
+          display_in_banner: boolean
+          display_in_page: boolean
+          end_date: string | null
+          features: string[] | null
+          id: string
+          image_url: string | null
+          is_active: boolean
+          original_price: string | null
+          promo_price: string | null
+          title: string
+          updated_at: string
+          whatsapp_message: string | null
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          display_in_banner?: boolean
+          display_in_page?: boolean
+          end_date?: string | null
+          features?: string[] | null
+          id?: string
+          image_url?: string | null
+          is_active?: boolean
+          original_price?: string | null
+          promo_price?: string | null
+          title: string
+          updated_at?: string
+          whatsapp_message?: string | null
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          display_in_banner?: boolean
+          display_in_page?: boolean
+          end_date?: string | null
+          features?: string[] | null
+          id?: string
+          image_url?: string | null
+          is_active?: boolean
+          original_price?: string | null
+          promo_price?: string | null
+          title?: string
+          updated_at?: string
+          whatsapp_message?: string | null
+        }
+        Relationships: []
+      }
+      site_settings: {
+        Row: {
+          id: string
+          key: string
+          updated_at: string
+          value: Json
+        }
+        Insert: {
+          id?: string
+          key: string
+          updated_at?: string
+          value?: Json
+        }
+        Update: {
+          id?: string
+          key?: string
+          updated_at?: string
+          value?: Json
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
+      is_admin: { Args: { _user_id: string }; Returns: boolean }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "support"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +477,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "support"],
+    },
   },
 } as const
