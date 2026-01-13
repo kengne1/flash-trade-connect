@@ -87,7 +87,7 @@ const AnnouncementBanner = () => {
 
   return (
     <div
-      className="relative w-full h-[120px] md:h-[140px] overflow-hidden"
+      className="relative w-full min-h-[160px] md:min-h-[180px] overflow-hidden"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onTouchStart={handleTouchStart}
@@ -109,16 +109,16 @@ const AnnouncementBanner = () => {
           />
           
           {/* Dark Overlay */}
-          <div className="absolute inset-0 bg-navy/70" />
+          <div className="absolute inset-0 bg-navy/75" />
           
           {/* Content */}
-          <div className="relative h-full container-custom flex items-center justify-center">
-            <div className="text-center text-cream max-w-3xl px-12 md:px-16">
+          <div className="relative h-full min-h-[160px] md:min-h-[180px] container-custom flex items-center justify-center py-6 md:py-8">
+            <div className="text-center text-cream max-w-3xl px-14 md:px-20">
               <motion.h3
                 initial={{ y: 10, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.2 }}
-                className="text-lg md:text-2xl font-bold mb-1 md:mb-2 drop-shadow-lg"
+                className="text-xl md:text-2xl lg:text-3xl font-bold mb-2 md:mb-3 drop-shadow-lg leading-tight"
               >
                 {current.title}
               </motion.h3>
@@ -126,7 +126,7 @@ const AnnouncementBanner = () => {
                 initial={{ y: 10, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.3 }}
-                className="text-sm md:text-base text-cream/90 mb-2 md:mb-3 drop-shadow"
+                className="text-base md:text-lg text-cream/90 mb-3 md:mb-4 drop-shadow leading-relaxed"
               >
                 {current.subtitle}
               </motion.p>
@@ -137,7 +137,7 @@ const AnnouncementBanner = () => {
               >
                 <Link
                   to={current.link}
-                  className="inline-block bg-gold hover:bg-gold/90 text-navy font-semibold px-4 py-1.5 md:px-6 md:py-2 rounded-full text-sm md:text-base transition-all hover:scale-105 shadow-lg"
+                  className="inline-block bg-gold hover:bg-gold/90 text-navy font-semibold px-5 py-2 md:px-7 md:py-2.5 rounded-full text-sm md:text-base transition-all hover:scale-105 shadow-lg"
                 >
                   {current.linkText}
                 </Link>
