@@ -17,6 +17,7 @@ import {
   LogOut,
   Menu,
   X,
+  Image,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useState } from 'react';
@@ -27,6 +28,7 @@ interface AdminLayoutProps {
 
 const menuItems = [
   { icon: LayoutDashboard, label: 'Tableau de bord', href: '/admin/dashboard' },
+  { icon: Image, label: 'Médiathèque', href: '/admin/media' },
   { icon: Package, label: 'Opportunités', href: '/admin/opportunities' },
   { icon: Tag, label: 'Promotions', href: '/admin/promotions' },
   { icon: GraduationCap, label: 'Formations', href: '/admin/formations' },

@@ -19,6 +19,7 @@ import NotFound from "./pages/NotFound";
 // Admin pages
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminDashboard from "./pages/admin/AdminDashboard";
+import AdminMedia from "./pages/admin/AdminMedia";
 import AdminOpportunities from "./pages/admin/AdminOpportunities";
 import AdminPromotions from "./pages/admin/AdminPromotions";
 import AdminFormations from "./pages/admin/AdminFormations";
@@ -55,6 +56,7 @@ const App = () => (
             {/* Admin routes */}
             <Route path="/admin" element={<AdminLogin />} />
             <Route path="/admin/dashboard" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
+            <Route path="/admin/media" element={<ProtectedRoute><AdminMedia /></ProtectedRoute>} />
             <Route path="/admin/opportunities" element={<ProtectedRoute><AdminOpportunities /></ProtectedRoute>} />
             <Route path="/admin/promotions" element={<ProtectedRoute><AdminPromotions /></ProtectedRoute>} />
             <Route path="/admin/formations" element={<ProtectedRoute><AdminFormations /></ProtectedRoute>} />
