@@ -173,6 +173,45 @@ export type Database = {
         }
         Relationships: []
       }
+      media: {
+        Row: {
+          created_at: string
+          file_path: string
+          id: string
+          media_type: string
+          mime_type: string
+          name: string
+          size: number
+          updated_at: string
+          uploaded_by: string | null
+          url: string
+        }
+        Insert: {
+          created_at?: string
+          file_path: string
+          id?: string
+          media_type: string
+          mime_type: string
+          name: string
+          size: number
+          updated_at?: string
+          uploaded_by?: string | null
+          url: string
+        }
+        Update: {
+          created_at?: string
+          file_path?: string
+          id?: string
+          media_type?: string
+          mime_type?: string
+          name?: string
+          size?: number
+          updated_at?: string
+          uploaded_by?: string | null
+          url?: string
+        }
+        Relationships: []
+      }
       opportunities: {
         Row: {
           category: string
