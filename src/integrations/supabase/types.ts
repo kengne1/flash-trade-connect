@@ -257,6 +257,47 @@ export type Database = {
         }
         Relationships: []
       }
+      opportunity_supplier_info: {
+        Row: {
+          alibaba_link: string | null
+          created_at: string
+          id: string
+          opportunity_id: string
+          supplier_delivery_time: string | null
+          supplier_moq: string | null
+          supplier_price: string | null
+          updated_at: string
+        }
+        Insert: {
+          alibaba_link?: string | null
+          created_at?: string
+          id?: string
+          opportunity_id: string
+          supplier_delivery_time?: string | null
+          supplier_moq?: string | null
+          supplier_price?: string | null
+          updated_at?: string
+        }
+        Update: {
+          alibaba_link?: string | null
+          created_at?: string
+          id?: string
+          opportunity_id?: string
+          supplier_delivery_time?: string | null
+          supplier_moq?: string | null
+          supplier_price?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "opportunity_supplier_info_opportunity_id_fkey"
+            columns: ["opportunity_id"]
+            isOneToOne: true
+            referencedRelation: "opportunities"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       page_contents: {
         Row: {
           content: Json
